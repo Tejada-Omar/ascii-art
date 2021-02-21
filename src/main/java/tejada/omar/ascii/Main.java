@@ -16,6 +16,7 @@ public class Main {
         for (ArrayList<Character> row:asciiArr) {
             for (char col:row) {
                 str.append(col);
+                str.append(col);
             }
             str.append("\n");
         }
