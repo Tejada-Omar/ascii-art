@@ -22,7 +22,7 @@ class MainTest {
     void shouldConvertMaxBrightnessToLightestChar() {
         main = new Main();
         int[][] brightnessArr = {{255, 255}, {255, 255}};
-        char lightestChar = '`';
+        char lightestChar = '.';
         ArrayList<ArrayList<Character>> charArr = main.convertBrightnessArrToAsciiArr(brightnessArr);
         assertEquals(lightestChar, charArr.get(1).get(0));
     }

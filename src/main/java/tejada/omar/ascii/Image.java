@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class Image {
     private final BufferedImage img;
-    int[][] brightnessArr;
+    private final int[][] brightnessArr;
 
     public Image() throws IOException {
         this("pineapple.jpg");
@@ -30,5 +30,9 @@ public class Image {
         }
 
         return arr;
+    }
+
+    public int[][] getBrightnessArray() {
+        return brightnessArr;
     }
 }

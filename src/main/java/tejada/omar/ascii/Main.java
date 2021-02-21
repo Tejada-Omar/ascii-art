@@ -1,9 +1,29 @@
 package tejada.omar.ascii;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Main {
-    static final String ASCII_CHARS = "`^\\\",:;Il!i~+_-?][}{1)(|\\\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$";
+    public static void main(String[] args) throws IOException {
+        Main main = new Main();
+        Image img = new Image();
+
+        System.out.print(main.getStringRepOfAsciiArr(main.convertBrightnessArrToAsciiArr(img.getBrightnessArray())));
+    }
+
+    String getStringRepOfAsciiArr(ArrayList<ArrayList<Character>> asciiArr) {
+        StringBuilder str = new StringBuilder();
+        for (ArrayList<Character> row:asciiArr) {
+            for (char col:row) {
+                str.append(col);
+            }
+            str.append("\n");
+        }
+
+        return str.toString();
+    }
+
+    static final String ASCII_CHARS = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\\\"^`'.";
     static final float MAX_VALUE = 255.0F;
 
     ArrayList<ArrayList<Character>> convertBrightnessArrToAsciiArr(int[][] brightnessArr) {
@@ -12,9 +32,13 @@ public class Main {
             ArrayList<Character> asciiRow = new ArrayList<>();
             for (int col:row) {
                 try {
-                    asciiRow.add(ASCII_CHARS.charAt((int) (Math.ceil(col / MAX_VALUE * ASCII_CHARS.length()) - 1)));
-                } catch (StringIndexOutOfBoundsException ex) { // Happens when pure black (0) is in brightnessArr
-                    asciiRow.add(ASCII_CHARS.charAt(ASCII_CHARS.length() - 1));
+                    asciiRow.add(ASCII_CHARS.charAt((int) (col / MAX_VALUE * ASCII_CHARS.length() - 1)));
+                } catch (StringIndexOutOfBoundsException ex) { // Happens when value is close to boundaries (0-255)
+                    if (col < 10) {
+                        asciiRow.add(ASCII_CHARS.charAt(0));
+                    } else {
+                        asciiRow.add(ASCII_CHARS.charAt(ASCII_CHARS.length() - 1));
+                    }
                 }
             }
             asciiArr.add(asciiRow);
