@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class Image {
     private final BufferedImage img;
-    int[][] brightnessArray;
+    int[][] brightnessArr;
 
     public Image() throws IOException {
         this("pineapple.jpg");
@@ -15,8 +15,7 @@ public class Image {
 
     public Image(String name) throws IOException {
         img = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(name)));
-
-        brightnessArray = makeBrightnessArray(img);
+        brightnessArr = makeBrightnessArray(img);
     }
 
     private int[][] makeBrightnessArray(BufferedImage img) {
