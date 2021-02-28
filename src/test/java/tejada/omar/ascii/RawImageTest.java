@@ -2,6 +2,8 @@ package tejada.omar.ascii;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class RawImageTest {
@@ -11,7 +13,7 @@ class RawImageTest {
     }
 
     @Test
-    void constructorThrowsNullPointerExceptionWhenInvalidPathGiven() {
-        assertThrows(NullPointerException.class, () -> new RawImage("pineapple.txt"));
+    void constructorThrowsIOExceptionWhenInvalidPathGiven() {
+        assertThrows(IOException.class, () -> new RawImage("pineapple.txt"));
     }
 }

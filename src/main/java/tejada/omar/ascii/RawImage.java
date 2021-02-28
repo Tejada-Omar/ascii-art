@@ -2,6 +2,7 @@ package tejada.omar.ascii;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -10,11 +11,15 @@ public class RawImage {
     private final int[][] brightnessArr;
 
     public RawImage() throws IOException {
-        this("pineapple.jpg");
+        BufferedImage temp = ImageIO.read(Objects.requireNonNull(getClass().
+                getClassLoader().getResourceAsStream("pineapple.jpg")));
+        img = ImageManipulator.resizeImage(temp, 100, 80);
+        brightnessArr = makeBrightnessArray(img);
     }
 
     public RawImage(String name) throws IOException {
-        BufferedImage temp = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(name)));
+        BufferedImage temp = ImageIO.read(new File(
+                System.getProperty("user.home") + "\\" + name));
         img = ImageManipulator.resizeImage(temp, 100, 80);
         brightnessArr = makeBrightnessArray(img);
     }

@@ -6,10 +6,22 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) throws IOException {
         Main main = new Main();
-        RawImage img = new RawImage();
+        
+        RawImage img = null;
+        switch (args.length) {
+            case 0:
+                img = new RawImage();
+                break;
+            case 1:
+                System.out.println(System.getProperty("user.home") + args[0]);
+                img = new RawImage(args[0]);
+                break;
+            default:
+                System.out.println("Too many arguments given...");
+                System.exit(-1);
+        }
 
         System.out.print(main.getStringRepOfAsciiArr(main.convertBrightnessArrToAsciiArr(img.getBrightnessArray())));
-        // TODO add commandline arguments
     }
 
     String getStringRepOfAsciiArr(ArrayList<ArrayList<Character>> asciiArr) {
@@ -25,7 +37,7 @@ public class Main {
         return str.toString();
     }
 
-    static final String ASCII_CHARS = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\\\"^`'.";
+    static final String ASCII_CHARS = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\\\"^`'. ";
     static final float MAX_VALUE = 255.0F;
 
     ArrayList<ArrayList<Character>> convertBrightnessArrToAsciiArr(int[][] brightnessArr) {
