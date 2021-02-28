@@ -6,9 +6,10 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) throws IOException {
         Main main = new Main();
-        Image img = new Image();
+        RawImage img = new RawImage();
 
         System.out.print(main.getStringRepOfAsciiArr(main.convertBrightnessArrToAsciiArr(img.getBrightnessArray())));
+        // TODO add commandline arguments
     }
 
     String getStringRepOfAsciiArr(ArrayList<ArrayList<Character>> asciiArr) {

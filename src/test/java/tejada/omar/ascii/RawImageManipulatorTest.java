@@ -6,7 +6,7 @@ import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ImageManipulatorTest {
+class RawImageManipulatorTest {
     @Test
     void shouldCalculateBrightnessBasedOnArgbValues() {
         // RGBA: rgba(43, 212, 150, 1)

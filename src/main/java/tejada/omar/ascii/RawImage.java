@@ -5,15 +5,15 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
 
-public class Image {
+public class RawImage {
     private final BufferedImage img;
     private final int[][] brightnessArr;
 
-    public Image() throws IOException {
+    public RawImage() throws IOException {
         this("pineapple.jpg");
     }
 
-    public Image(String name) throws IOException {
+    public RawImage(String name) throws IOException {
         img = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(name)));
         brightnessArr = makeBrightnessArray(img);
     }
