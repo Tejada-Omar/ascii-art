@@ -14,7 +14,8 @@ public class RawImage {
     }
 
     public RawImage(String name) throws IOException {
-        img = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(name)));
+        BufferedImage temp = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(name)));
+        img = ImageManipulator.resizeImage(temp, 100, 80);
         brightnessArr = makeBrightnessArray(img);
     }
 
@@ -34,5 +35,9 @@ public class RawImage {
 
     public int[][] getBrightnessArray() {
         return brightnessArr;
+    }
+
+    public double getAspectSize() {
+        return 1.0 * img.getWidth() / img.getHeight();
     }
 }
