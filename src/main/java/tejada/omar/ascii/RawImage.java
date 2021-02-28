@@ -24,6 +24,13 @@ public class RawImage {
         brightnessArr = makeBrightnessArray(img);
     }
 
+    public RawImage(String name, int newWidth, int newHeight) throws IOException {
+        BufferedImage temp = ImageIO.read(new File(
+                System.getProperty("user.home") + "\\" + name));
+        img = ImageManipulator.resizeImage(temp, newWidth, newHeight);
+        brightnessArr = makeBrightnessArray(img);
+    }
+
     private int[][] makeBrightnessArray(BufferedImage img) {
         int col = img.getWidth();
         int row = img.getHeight();

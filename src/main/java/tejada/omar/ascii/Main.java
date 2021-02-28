@@ -8,16 +8,23 @@ public class Main {
         Main main = new Main();
         
         RawImage img = null;
+        String filename;
         switch (args.length) {
             case 0:
                 img = new RawImage();
                 break;
             case 1:
-                System.out.println(System.getProperty("user.home") + args[0]);
-                img = new RawImage(args[0]);
+                filename = args[0];
+                img = new RawImage(filename);
+                break;
+            case 3:
+                filename = args[0];
+                int newWidth = Integer.parseInt(args[1]);
+                int newHeight = Integer.parseInt(args[2]);
+                img = new RawImage(filename, newWidth, newHeight);
                 break;
             default:
-                System.out.println("Too many arguments given...");
+                System.out.println("Not right amount of arguments given...");
                 System.exit(-1);
         }
 
